@@ -15,12 +15,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from fastburgersweb.views import index, product_view, do_login, do_logout
+from fastburgersweb.views import index, coupon, do_login, do_logout, signin, like, dislike, favorites
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', index, name="fastBurgers"),
-    path('<int:product_id>/product_view', product_view, name="product_view"),
+    path('', index, name="index"),
+    path('<int:coupon_id>/coupon', coupon, name="coupon"),
+    path('<int:coupon_id>/like', like, name="like"),
+    path('<int:coupon_id>/dislike', dislike, name="dislike"),
     path('login/', do_login, name="do_login"),
     path('logout/', do_logout, name="do_logout"),
+    path('signin/', signin, name="signin"),
+    path('favorites/', favorites, name="favorites"),
 ]

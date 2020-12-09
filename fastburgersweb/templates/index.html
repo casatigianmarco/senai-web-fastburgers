@@ -36,14 +36,14 @@
                             <ul class="list-unstyled">
                                 {% if not request.user.is_authenticated %}
                                 <li><a href="{% url 'do_login' %}" class="text-white">Login</a></li>
+                                <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
                                 {% endif %}
                                 {% if request.user.is_authenticated %}
                                 <li style="color: #fff;">Olá, {{ request.user.username }}</li>
+                                <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                                <li><a href="{% url 'favorites' %}" class="text-white">MyfastBurgers</a></li>
                                 <li><a href="{% url 'do_logout' %}" class="text-white">Logout</a></li>
                                 {% endif %}
-                                
-                                <!-- <li><a href="#" class="text-white">Curta no Facebook</a></li>
-                      <li><a href="#" class="text-white">Me envie um e-mail</a></li> -->
                             </ul>
                         </div>
                     </div>
@@ -145,9 +145,8 @@
                                     <p class="card-text">{{ special_coupon.product.category }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{% url 'product_view' special_coupon.id %}" class="btn btn-sm btn-outline-secondary">Ver</a>
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Gostei</button>
+                                            <a href="{% url 'coupon' special_coupon.id %}"
+                                                class="btn btn-sm btn-outline-secondary">Ver</a>
                                         </div>
                                         <small class="text-muted">R$ {{ special_coupon.price }}</small>
                                     </div>
@@ -176,9 +175,8 @@
                                     <p class="card-text">{{ coupon.product.category }}</p>
                                     <div class="d-flex justify-content-between align-items-center">
                                         <div class="btn-group">
-                                            <a href="{% url 'product_view' coupon.id %}" class="btn btn-sm btn-outline-secondary">Ver</a>
-                                            <button type="button"
-                                                class="btn btn-sm btn-outline-secondary">Gostei</button>
+                                            <a href="{% url 'coupon' coupon.id %}"
+                                                class="btn btn-sm btn-outline-secondary">Ver</a>
                                         </div>
                                         <small class="text-muted">R$ {{ coupon.price }}</small>
                                     </div>

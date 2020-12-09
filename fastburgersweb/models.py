@@ -1,15 +1,5 @@
 from django.db import models
-
-# Create your models here.
-# class Category(models.Model):
-#     name = models.CharField(max_length=100)    
-    
-#     class Meta:
-#         verbose_name = ("Category")
-#         verbose_name_plural = ("Categories")
-
-#     def __str__(self):
-#         return self.name
+from django.contrib.auth import get_user_model
 
 class Product(models.Model):
     CATEGORIES = [
@@ -87,3 +77,11 @@ class Coupon(models.Model):
 
     def __str__(self):
         return self.title #name to be shown when called
+
+class Favorite(models.Model):
+    coupon = models.ForeignKey(Coupon, on_delete=models.CASCADE)
+    user = models.ForeignKey(get_user_model(), on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = ("Favorite")
+        verbose_name_plural = ("Favorites")

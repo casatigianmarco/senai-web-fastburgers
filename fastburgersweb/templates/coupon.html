@@ -20,21 +20,28 @@
                 <div class="row">
                     <div class="col-sm-8 col-md-7 py-4">
                         <h4 class="text-white">Sobre</h4>
-                        <p class="text-muted">Fundado em 1954, o fastBURGERS® é a segunda maior rede de hambúrgueres do
-                            mundo. Lar original do WHOPPER®, possui mais de 15 mil lojas, servindo mais de 11 milhões de
+                        <p class="text-muted">Fundado em 1954, o fastBURGERS® é a segunda maior rede de hambúrgueres
+                            do
+                            mundo. Lar original do WHOPPER®, possui mais de 15 mil lojas, servindo mais de 11
+                            milhões de
                             consumidores por dia em mais de 100 países ao redor do mundo. Aproximadamente 90% dos
-                            restaurantes fastBURGERS® pertencem e são operados por franquias independentes, muitas delas
+                            restaurantes fastBURGERS® pertencem e são operados por franquias independentes, muitas
+                            delas
                             administradas por empresas familiares que estão no ramo há décadas.</p>
                     </div>
                     <div class="col-sm-4 offset-md-1 py-4">
                         <h4 class="text-white">My fastBURGERS</h4>
                         <ul class="list-unstyled">
+                            {% if not request.user.is_authenticated %}
                             <li><a href="{% url 'do_login' %}" class="text-white">Login</a></li>
-                            {% if user.is_authenticated %}
-                            <li><a href="{% url 'do_login' %}" class="text-white">Logout</a></li>
+                            <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
                             {% endif %}
-                            <!-- <li><a href="#" class="text-white">Curta no Facebook</a></li>
-                  <li><a href="#" class="text-white">Me envie um e-mail</a></li> -->
+                            {% if request.user.is_authenticated %}
+                            <li style="color: #fff;">Olá, {{ request.user.username }}</li>
+                            <li><a href="{% url 'index' %}" class="text-white">Home</a></li>
+                            <li><a href="{% url 'favorites' %}" class="text-white">MyfastBurgers</a></li>
+                            <li><a href="{% url 'do_logout' %}" class="text-white">Logout</a></li>
+                            {% endif %}
                         </ul>
                     </div>
                 </div>
@@ -82,8 +89,8 @@
                                 <p class="card-text">{{ coupon.store.name }}, {{ coupon.store.city }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <button type="button"
-                                            class="btn btn-sm btn-outline-secondary">Gostei</button>
+                                        <a href="{% url 'like' coupon.id %}"
+                                            class="btn btn-sm btn-outline-secondary">Gostei</a>
                                     </div>
                                     <small class="text-muted">R$ {{ coupon.price }}</small>
                                 </div>
