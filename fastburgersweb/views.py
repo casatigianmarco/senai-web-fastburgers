@@ -106,5 +106,5 @@ def index(request): # index view
                 )
             return render(request, "index.html", { "stores": stores, "specials": specials, "all": all })
     specials = Coupon.objects.select_related('product').filter(is_special=1)
-    all = Coupon.objects.select_related('product').all().filter(is_special=0)
+    all = Coupon.objects.select_related('product').filter(is_special=0)
     return render(request, "index.html", { "stores": stores, "specials": specials, "all": all })

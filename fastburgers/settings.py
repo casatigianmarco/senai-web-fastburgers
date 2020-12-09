@@ -37,7 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'fastburgersweb'
+    'fastburgersweb',
+    'rest_framework',
+    'fastburgersapi'
 ]
 
 MIDDLEWARE = [

@@ -14,11 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from fastburgersweb.views import index, coupon, do_login, do_logout, signin, like, dislike, favorites
+from fastburgersapi import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('fastburgersapi.urls')),
     path('', index, name="index"),
     path('<int:coupon_id>/coupon', coupon, name="coupon"),
     path('<int:coupon_id>/like', like, name="like"),
